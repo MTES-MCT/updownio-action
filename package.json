@@ -1,0 +1,32 @@
+{
+  "name": "updownio-action",
+  "version": "1.0.0",
+  "description": "Github action that fetches updown.io checks from API and report results as JSON.",
+  "main": "src/index.js",
+  "scripts": {
+    "lint": "eslint .",
+    "prepare": "ncc build src/index.js -o dist --source-map --license licenses.txt",
+    "test": "jest",
+    "all": "npm run lint && npm run prepare && npm run test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MTES-MCT/updownio-action.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MTES-MCT/updownio-action/issues"
+  },
+  "homepage": "https://github.com/MTES-MCT/updownio-action#readme",
+  "dependencies": {
+    "@actions/core": "^1.2.6",
+    "node-fetch": "^2.6.1"
+  },
+  "devDependencies": {
+    "@vercel/ncc": "^0.27.0",
+    "eslint": "^7.23.0",
+    "jest": "^26.6.3"
+  }
+}

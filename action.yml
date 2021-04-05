@@ -1,0 +1,16 @@
+name: 'Fetch updown.io checks'
+description: 'Fetch checks from https://updown.io API'
+inputs:
+  apiKey: 
+    description: 'updown.io API read only key required'
+    required: true
+  url: 
+    description: 'URL checks'
+    required: true
+  output:
+    description: 'Path to output file. defaults to updownio.json'
+    default: 'updownio.json'
+    required: true
+runs:
+  using: 'node12'
+  main: 'dist/index.js'

@@ -1,0 +1,32 @@
+name: "units-test"
+on:
+  pull_request:
+  push:
+    branches:
+      - master
+      - 'releases/*'
+
+jobs:
+  # unit tests
+  units:
+    name: Unit tests
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - run: npm ci
+    - run: npm test
+
+  # test action works running from the graph
+  test:
+    name: Test GH Action
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Run on www.dossierfacile.fr
+      uses: ./
+      with:
+        apiKey: ${{ secrets.UPDOWNIO_API_KEY }}
+        url: https://www.dossierfacile.fr
+        output: updownio.json
+    - run: |
+        cat updownio.json
