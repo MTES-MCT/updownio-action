@@ -1,4 +1,5 @@
 # updownio-action
+[![units-test](https://github.com/MTES-MCT/updownio-action/actions/workflows/test.yml/badge.svg)](https://github.com/MTES-MCT/updownio-action/actions/workflows/test.yml)
 
 Github action that fetches updown.io checks from API and report results as JSON.
 
