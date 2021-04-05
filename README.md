@@ -1,4 +1,4 @@
-# updownio-dashlord-action
+# updownio-action
 
 Github action that fetches updown.io checks from API and report results as JSON.
 
