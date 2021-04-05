@@ -11,9 +11,9 @@ jobs:
   scan:
     runs-on: ubuntu-latest
     steps:
-      - uses: "socialgouv/httpobs-action@master"
+      - uses: "MTES-MCT/updownio-action@master"
         with:
           apiKey: ${{ secrets.UPDOWNIO_API_KEY }}
-          url: http://www.free.fr
-          output: report.json
+          url: http://www.dossierfacile.fr
+          output: updownio.json
 ```
