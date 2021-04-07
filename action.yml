@@ -1,5 +1,9 @@
 name: 'Fetch updown.io checks'
 description: 'Fetch checks from https://updown.io API'
+author: 'Tristan Robert'
+branding:
+  icon: 'activity'  
+  color: 'green'
 inputs:
   apiKey: 
     description: 'updown.io API read only key required'
