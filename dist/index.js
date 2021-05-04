@@ -2089,10 +2089,11 @@ const checks = (url, apiKey) => {
   return fetch(apiUrl)
     .then(checkStatus)
     .then(json => { if (json.error) {console.error("e", json.error); throw new Error(json.error);}
-    return json.filter(item => item.url === url)[0]; });
+    return json.filter(item => item.url.replace(/\/$/,"") === url.replace(/\/$/,""))[0]; });
 };
 
 module.exports = checks;
+
 
 /***/ }),
 
