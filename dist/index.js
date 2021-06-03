@@ -2076,6 +2076,20 @@ const checkStatus = (response) => {
   }
 };
 
+const remap = (value, x1, y1, x2, y2) =>
+((value - x1) * (y2 - x2)) / (y1 - x1) + x2;
+
+const scoreToGrade = (score) => {
+  const grades = "A,B,C,D,E,F".split(",");
+
+  const newGrade = Math.min(
+    grades.length - 1,
+    Math.floor(remap(1 - score, 0, 1, 0, 6))
+  );
+
+  return grades[newGrade];
+};
+
 /**
  * Returns checks for a given url related to an api-key (updown.io account)
  *
@@ -2110,6 +2124,8 @@ const checks = (url, apiKey) => {
             console.error("e", json.error);
             throw new Error(json.error);
           }
+          json.uptimeGrade = scoreToGrade(json.uptime);
+          json.apdexGrade = scoreToGrade(json.uptime);
           return json
         });
     });
