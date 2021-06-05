@@ -2076,18 +2076,18 @@ const checkStatus = (response) => {
   }
 };
 
-const remap = (value, x1, y1, x2, y2) =>
-((value - x1) * (y2 - x2)) / (y1 - x1) + x2;
-
-const scoreToGrade = (score) => {
-  const grades = "A,B,C,D,E,F".split(",");
-
-  const newGrade = Math.min(
-    grades.length - 1,
-    Math.floor(remap(1 - score, 0, 1, 0, 6))
-  );
-
-  return grades[newGrade];
+const getUpDownGrade = (uptime) => {
+  return uptime > 0.99
+    ? "A"
+    : uptime > 0.98
+    ? "B"
+    : uptime > 0.97
+    ? "C"
+    : uptime > 0.96
+    ? "D"
+    : uptime > 0.95
+    ? "E"
+    : "F";
 };
 
 /**
@@ -2124,15 +2124,17 @@ const checks = (url, apiKey) => {
             console.error("e", json.error);
             throw new Error(json.error);
           }
-          json.uptimeGrade = scoreToGrade(json.uptime);
-          json.apdexGrade = scoreToGrade(json.uptime);
-          return json
+          json.uptimeGrade = json.uptime && getUpDownGrade(json.uptime / 100);
+          json.apdexGrade =
+            json.metrics &&
+            json.metrics.apdex &&
+            getUpDownGrade(json.metrics.apdex);
+          return json;
         });
     });
 };
 
 module.exports = checks;
-
 
 
 /***/ }),
