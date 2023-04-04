@@ -5,7 +5,7 @@ const checks = require("./checks");
 
 async function run() {
   try {
-    const url = core.getInput("url");
+    const url = core.getInput("url").replace(/^(https?:\/\/[^/#]+).*$/g, "$1");
     const apiKey = core.getInput("apiKey");
     core.setSecret(apiKey);
     const output = core.getInput("output");
